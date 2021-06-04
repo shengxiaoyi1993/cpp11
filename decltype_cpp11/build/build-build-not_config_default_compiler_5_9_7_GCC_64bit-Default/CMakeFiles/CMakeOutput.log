@@ -1,0 +1,59 @@
+The system is: Linux - shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+3.10.0-1160.11.1.el7.x86_64 - shell-init: error retrieving current directory: getcwd: cannot access parent directories: No such file or directory
+x86_64
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/gmake cmTC_1602e/fast 
+/bin/gmake -f CMakeFiles/cmTC_1602e.dir/build.make CMakeFiles/cmTC_1602e.dir/build
+gmake[1]: Entering directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1602e.dir/testCCompiler.c.o
+/bin/cc    -o CMakeFiles/cmTC_1602e.dir/testCCompiler.c.o   -c /home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_1602e
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1602e.dir/link.txt --verbose=1
+/bin/cc      CMakeFiles/cmTC_1602e.dir/testCCompiler.c.o  -o cmTC_1602e 
+gmake[1]: Leaving directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/gmake cmTC_1532f/fast 
+/bin/gmake -f CMakeFiles/cmTC_1532f.dir/build.make CMakeFiles/cmTC_1532f.dir/build
+gmake[1]: Entering directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1532f.dir/CMakeCCompilerABI.c.o
+/bin/cc    -o CMakeFiles/cmTC_1532f.dir/CMakeCCompilerABI.c.o   -c /usr/local/share/cmake-3.14/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_1532f
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1532f.dir/link.txt --verbose=1
+/bin/cc      CMakeFiles/cmTC_1532f.dir/CMakeCCompilerABI.c.o  -o cmTC_1532f 
+gmake[1]: Leaving directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/gmake cmTC_1f31a/fast 
+/bin/gmake -f CMakeFiles/cmTC_1f31a.dir/build.make CMakeFiles/cmTC_1f31a.dir/build
+gmake[1]: Entering directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_1f31a.dir/testCXXCompiler.cxx.o
+/bin/c++     -o CMakeFiles/cmTC_1f31a.dir/testCXXCompiler.cxx.o -c /home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_1f31a
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1f31a.dir/link.txt --verbose=1
+/bin/c++       CMakeFiles/cmTC_1f31a.dir/testCXXCompiler.cxx.o  -o cmTC_1f31a 
+gmake[1]: Leaving directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/bin/gmake cmTC_8de71/fast 
+/bin/gmake -f CMakeFiles/cmTC_8de71.dir/build.make CMakeFiles/cmTC_8de71.dir/build
+gmake[1]: Entering directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_8de71.dir/CMakeCXXCompilerABI.cpp.o
+/bin/c++     -o CMakeFiles/cmTC_8de71.dir/CMakeCXXCompilerABI.cpp.o -c /usr/local/share/cmake-3.14/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_8de71
+/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8de71.dir/link.txt --verbose=1
+/bin/c++       CMakeFiles/cmTC_8de71.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_8de71 
+gmake[1]: Leaving directory `/home/sxy/Github/cpp11/decltype_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/CMakeFiles/CMakeTmp'
+
+

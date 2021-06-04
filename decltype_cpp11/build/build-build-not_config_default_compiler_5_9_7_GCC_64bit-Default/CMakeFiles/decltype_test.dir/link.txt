@@ -1,0 +1,1 @@
+/bin/c++  -std=c++11   CMakeFiles/decltype_test.dir/home/sxy/Github/cpp11/decltype_cpp11/src/main.cpp.o CMakeFiles/decltype_test.dir/home/sxy/Github/cpp11/decltype_cpp11/src/export.cpp.o  -o decltype_test 
