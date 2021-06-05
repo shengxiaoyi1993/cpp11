@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="move_cpp11"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="move_cpp11">
+				<Option output="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/move_cpp11" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 move_cpp11"/>
+					<CompileFile command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="move_cpp11/fast">
+				<Option output="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/move_cpp11" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5/x86_64-redhat-linux"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/../../../../include/c++/4.8.5/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-redhat-linux/4.8.5/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 move_cpp11/fast"/>
+					<CompileFile command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/bin/gmake -j8 -f &quot;/home/sxy/Github/cpp11/move_cpp11/build/build-build-not_config_default_compiler_5_9_7_GCC_64bit-Default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/sxy/Github/cpp11/move_cpp11/src/export.cpp">
+			<Option target="move_cpp11"/>
+		</Unit>
+		<Unit filename="/home/sxy/Github/cpp11/move_cpp11/src/export.h">
+			<Option target="move_cpp11"/>
+		</Unit>
+		<Unit filename="/home/sxy/Github/cpp11/move_cpp11/src/main.cpp">
+			<Option target="move_cpp11"/>
+		</Unit>
+		<Unit filename="/home/sxy/Github/cpp11/move_cpp11/build/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
