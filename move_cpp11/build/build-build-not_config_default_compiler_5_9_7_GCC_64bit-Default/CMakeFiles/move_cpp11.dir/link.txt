@@ -1,1 +1,0 @@
-/bin/c++  -std=c++11  -rdynamic CMakeFiles/move_cpp11.dir/home/sxy/Github/cpp11/move_cpp11/src/main.cpp.o CMakeFiles/move_cpp11.dir/home/sxy/Github/cpp11/move_cpp11/src/export.cpp.o  -o move_cpp11 
