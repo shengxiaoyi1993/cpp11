@@ -66,6 +66,18 @@ int main(int argc, char *argv[])
 
   }
 
+
+  {
+    std::map<int,int> h;
+
+    h[8]++;
+
+    for (auto it:h) {
+      std::cout<<"("<<it.first<<","<<it.second<<")"<<std::endl;
+    }
+  }
+
+
   return 0;
 
 }

@@ -1,4 +1,7 @@
 #include <iostream>
+#include <malloc.h>
+#include <cstring>
+#include <vector>
 
 /// 基于右值引用引申出的 2 种 C++ 编程技巧，分别为移动语义和完美转发
 /// lvalue 是“loactor value”的缩写，可意为存储在内存中、有明确存储地址（可寻址）的数据，
@@ -60,47 +63,160 @@ using namespace std;
 
 class demo{
 public:
-    demo():num(new int(0)){
-        cout<<"construct!"<<endl;
-    }
-    demo(const demo &d):num(new int(*d.num)){
-        cout<<"copy construct!"<<endl;
-    }
-    //添加移动构造函数
-    demo(demo &&d):num(d.num){
-        d.num = NULL;
-        cout<<"move construct!"<<endl;
-    }
-    ~demo(){
-        cout<<"class destruct!"<<endl;
-    }
+  demo():num(new int(0)){
+    cout<<"construct!"<<endl;
+  }
+  demo(const demo &d):num(new int(*d.num)){
+    cout<<"copy construct!"<<endl;
+  }
+  //添加移动构造函数
+  demo(demo &&d):num(d.num){
+    d.num = NULL;
+    cout<<"move construct!"<<endl;
+  }
+  ~demo(){
+    cout<<"class destruct!"<<endl;
+  }
 private:
-    int *num;
+  int *num;
 };
 demo get_demo(){
-    return demo();
+  return demo();
 }
+
+
+class   BiData{
+public:
+  BiData():
+    __size(0),
+    __data(nullptr)
+  {
+    cout<<__FUNCTION__<<" init no"<<endl;
+  }
+
+  /// 该函数将指针指向的内存作为该类的数据，将输入指针置为指向NULL
+  BiData(size_t v_size, char* &v_data):
+    __size(v_size),
+    __data(v_data)
+  {
+    cout<<__FUNCTION__<<" init"<<endl;
+
+    v_data=nullptr;
+  }
+
+  BiData(const BiData & v_bd):
+    __size(v_bd.__size)
+  {
+    cout<<__FUNCTION__<<" copy"<<endl;
+
+    __data=(char*)malloc(sizeof (char)*__size);
+    memcpy(__data,v_bd.__data,sizeof (char)*v_bd.__size);
+  }
+
+  BiData( BiData && v_bd):
+    __size(v_bd.__size),
+    __data(v_bd.__data)
+  {
+    cout<<__FUNCTION__<<" move"<<endl;
+    v_bd.__data=nullptr;
+    v_bd.__size=0;
+  }
+
+  void  print(){
+    cout<<"size:"<<__size<<endl;
+    for (uint i=0;i<__size; i++) {
+      cout<<__data[i];
+    }
+    cout<<endl;
+  }
+
+private:
+  size_t __size;
+  char *__data;
+
+
+};
 
 
 int main(int argc, char *argv[])
 {
 
+  //  {
+  //    int && a = 10;
+  //    const int &c = 10;
+
+  //    a = 100;
+  //    cout << a << endl;
+  //    cout << c << endl;
+
+  //    const int&& aa = 10;
+  //    cout << aa << endl;
+
+  //  }
+
+  //  {
+  //    demo a = get_demo();
+  //    return 0;
+  //  }
+
+
   {
-    int && a = 10;
-    const int &c = 10;
+    //    char *pdata=(char*)malloc(100);
+    //    pdata[0]='c';
+    //    cout<<"pdata[0]:"<<pdata[0]<<endl;
+    //    char * pmove=std::move(pdata);
+    //    cout<<"pmove[0]:"<<pmove[0]<<endl;
+    //    cout<<"pdata[0]:"<<pdata[0]<<endl;
 
-    a = 100;
-    cout << a << endl;
-    cout << c << endl;
+    //    delete pdata;
+    //    //    delete pmove;
 
-    const int&& aa = 10;
-    cout << aa << endl;
+  }
+  {
+    //    BiData bd0;
+
+    //    char *pdata=(char*)malloc(100);
+    //    BiData bd0(100,pdata);
+    //    bd0.print();
+
+    //    cout<<"after move copy"<<endl;
+    //    BiData bd_mv(std::move(bd0));
+    //    bd0.print();
+    //    bd_mv.print();
 
   }
 
   {
-    demo a = get_demo();
-    return 0;
+    cout<<"init in push"<<endl;
+    vector<BiData> l_data;
+    l_data.push_back(BiData());
   }
+
+  {
+    cout<<"init before push"<<endl;
+    BiData tbd;
+    vector<BiData> l_data;
+    l_data.push_back(tbd);
+  }
+
+  {
+    cout<<"init in push rv"<<endl;
+    vector<BiData> l_data;
+    l_data.push_back(std::move(BiData()));
+  }
+
+  {
+    cout<<"init before push rv"<<endl;
+    BiData tbd;
+    vector<BiData> l_data;
+    l_data.push_back(std::move(tbd));
+  }
+
+
+  {
+
+  }
+
+
   return 0;
 }

@@ -38,6 +38,8 @@
 /// - 私有继承（private）：当一个类派生自私有基类时，基类的公有和保护成员将成为派生类的私有成员。
 ///
 ///- 纯虚函数可以设计成私有的，不过这样不允许在本类之外的非友元函数中直接调用它，子类中只有覆盖这种纯虚函数的义务，却没有调用它的权利。
+///
+
 
 
 using namespace  std;
@@ -45,11 +47,18 @@ class Base
 {
 public:
 
-    Base(int i) :baseI(i){};
+    Base(int i) :baseI(i){    cout<<"init "<<__func__<<endl;};
 
-    virtual void print(void){ cout << "调用了虚函数Base::print()"; }
+    virtual void print(void){ cout << "调用了虚函数 Base::print()"<<endl; }
 
-    virtual void setI(){cout<<"调用了虚函数Base::setI()";}
+    virtual void setI(){cout<<"调用了虚函数 Base::setI()"<<endl;}
+
+    virtual void callFunc(){cout<<"调用了虚函数 Base::callFunc()"<<endl;
+                            print();
+                           }
+
+    virtual void changePrivate(){cout<<"调用了虚函数 Base::changePrivate()"<<endl;}
+
 
     virtual ~Base(){}
 
@@ -58,11 +67,62 @@ private:
     int baseI;
 
 };
+class BaseB:public Base{
+public:
+  BaseB(int i):Base(i){
+    cout<<"init "<<__func__<<endl;
 
+  }
+  virtual ~BaseB(){}
+
+  virtual void print(void){ cout << "调用了虚函数 BaseB::print()"<<endl;
+                            Base::print();
+                            Base::setI();
+                          }
+  virtual void setI(){cout<<"调用了虚函数 BaseB::setI()"<<endl;}
+
+  private:
+  virtual void changePrivate(){
+    cout<<"调用了虚函数 BaseB::changePrivate()"<<endl;}
+
+};
+
+
+void printAddr();
+
+/// - 基类的某一函数中使用被子类重载的函数，运行时该函数调用的是哪一个
+///  运行的的=是被重载后的函数
+/// - 公有切换成私有 可行
+/// - 被覆盖的含调用未被覆盖的函数 可行
+///  - 盛基类本身维护了一个函数表，子类重写时并不会影响基类的函数表
+void overLoad();
 
 
 int main(int argc, char *argv[])
 {
+  BaseB b(13);
+//  b.callFunc();
+//  b.setI();
+  b.print();
+//b.changePrivate();
+
+  return 0;
+}
+
+
+
+
+
+void overLoad(){
+
+
+}
+
+void printAddr(){
+  //  我们把虚表指针的值取出来： ＊(int＊)(&b)，它是一个地址，虚函数表的地址
+  //  把虚函数表的地址强制转换成 int* : ( int ＊) ＊( int＊ )( &b )
+  //  再把它转化成我们Fun指针类型 ： (Fun )＊(int ＊)＊(int＊)(&b)
+
   Base b(1000);
   int * vptrAdree = (int *)(&b);
   cout << "虚函数指针（vprt）的地址是：\t"<<vptrAdree << endl;
@@ -73,10 +133,5 @@ int main(int argc, char *argv[])
   cout << "通过地址，调用虚函数Base::print()：";
   vfunc();
 
-//  我们把虚表指针的值取出来： ＊(int＊)(&b)，它是一个地址，虚函数表的地址
-//  把虚函数表的地址强制转换成 int* : ( int ＊) ＊( int＊ )( &b )
-//  再把它转化成我们Fun指针类型 ： (Fun )＊(int ＊)＊(int＊)(&b)
-
-
-  return 0;
 }
+
