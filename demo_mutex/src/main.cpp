@@ -67,24 +67,73 @@ void go()
     cv.notify_all(); // 唤醒所有线程.
 }
 
+void test_try_lockwrongmutex();
+
+
 int main()
 {
-    std::thread threads[10];
-    // spawn 10 threads:
 
-    threads[0] = std::thread(do_print_id, 0);
+//    std::thread threads[10];
+//    // spawn 10 threads:
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+//    threads[0] = std::thread(do_print_id, 0);
 
-    ready=true;
-    for (int i = 1; i < 10; ++i)
-        threads[i] = std::thread(do_print_id, i);
+//    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
-    std::cout << "10 threads ready to race...\n";
-//    go(); // go!
+//    ready=true;
+//    for (int i = 1; i < 10; ++i)
+//        threads[i] = std::thread(do_print_id, i);
+
+//    std::cout << "10 threads ready to race...\n";
+////    go(); // go!
+
+//  for (auto & th:threads)
+//        th.join();
+
+  test_try_lockwrongmutex();
+
+    return 0;
+}
+
+
+/// 假设有锁以指针方式锁定调用
+/// 原mutex被释放再次调用时会发生什么
+/// 线程锁锁定时,释放线程锁,尝试解锁时会能溃
+
+static std::mutex *__g_mutex=nullptr;
+static std::mutex __g_mutex_nofree;
+int _g_count=0;
+
+void do_something()
+{
+  if (_g_count%2 != 0) {
+    _g_count++;
+//    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+    free(__g_mutex);
+//    __g_mutex=nullptr;
+  }
+  else{
+    _g_count++;
+    std::unique_lock<std::mutex> lck(*__g_mutex);
+    std::cout<<"do_something:"<<_g_count<<std::endl;
+    std::cout.flush();
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+  }
+}
+
+void test_try_lockwrongmutex()
+{
+  __g_mutex=new std::mutex;
+  std::thread threads[3];
+      for (int i = 0; i < 3; ++i)
+      {
+        threads[i] = std::thread(do_something);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+      }
+
 
   for (auto & th:threads)
         th.join();
 
-    return 0;
 }
+
