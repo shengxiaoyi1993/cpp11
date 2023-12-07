@@ -9,6 +9,7 @@
 cmake_minimum_required (VERSION 3.0.2)
 project (demo_atomic VERSION 1.0)
 set( CMAKE_CXX_FLAGS "-std=c++11" )
+add_definitions(-D_GLIBCXX_USE_C99=1)
 add_executable(${PROJECT_NAME}
   "../src/main.cpp"
   "../src/export.cpp")

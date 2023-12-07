@@ -47,24 +47,24 @@ class Base
 {
 public:
 
-    Base(int i) :baseI(i){    cout<<"init "<<__func__<<endl;};
+  Base(int i) :baseI(i){    cout<<"init "<<__func__<<endl;};
 
-    virtual void print(void){ cout << "调用了虚函数 Base::print()"<<endl; }
+  virtual void print(void){ cout << "调用了虚函数 Base::print()"<<endl; }
 
-    virtual void setI(){cout<<"调用了虚函数 Base::setI()"<<endl;}
+  virtual void setI(){cout<<"调用了虚函数 Base::setI()"<<endl;}
 
-    virtual void callFunc(){cout<<"调用了虚函数 Base::callFunc()"<<endl;
-                            print();
-                           }
+  virtual void callFunc(){cout<<"调用了虚函数 Base::callFunc()"<<endl;
+                          print();
+                         }
 
-    virtual void changePrivate(){cout<<"调用了虚函数 Base::changePrivate()"<<endl;}
+  virtual void changePrivate(){cout<<"调用了虚函数 Base::changePrivate()"<<endl;}
 
 
-    virtual ~Base(){}
+  virtual ~Base(){}
 
 private:
 
-    int baseI;
+  int baseI;
 
 };
 class BaseB:public Base{
@@ -77,11 +77,11 @@ public:
 
   virtual void print(void){ cout << "调用了虚函数 BaseB::print()"<<endl;
                             Base::print();
-                            Base::setI();
+                                                    Base::setI();
                           }
   virtual void setI(){cout<<"调用了虚函数 BaseB::setI()"<<endl;}
 
-  private:
+private:
   virtual void changePrivate(){
     cout<<"调用了虚函数 BaseB::changePrivate()"<<endl;}
 
@@ -98,13 +98,184 @@ void printAddr();
 void overLoad();
 
 
+template <class T>
+class Print_int
+{
+public:
+  virtual void print()=0;
+};
+
+template <class T>
+class WordPrint:public virtual Print_int<T>
+{
+public:
+
+  void print()
+  {
+    std::cout<<"WordPrint is printing"<<std::endl;
+  }
+};
+
+int demo_WordPrint(int argc, char *argv[])
+{
+  WordPrint<int> tp;
+  tp.print();
+}
+
+
+#include<iostream>
+
+using namespace std;
+
+class BaseBB {
+public:
+  BaseBB() { cout << "BaseBB Creted" << endl; }
+  virtual ~BaseBB() { cout << "BaseBB Destroyed" << endl; }
+  virtual BaseBB* func() {
+    cout << "BaseBB" << endl;
+    return new BaseBB();
+  }
+  virtual void GetA()
+  {
+
+  }
+};
+
+class Derived : public BaseBB {
+public:
+  Derived() { cout << "Derived Created" << endl; }
+  ~Derived() { cout << "Derived Destroyed" << endl; }
+  virtual Derived* func() {
+    cout << "Derived" << endl;
+    return new Derived();
+  }
+
+  virtual void GetA()
+  {
+    cout << "aaa" << endl;
+  }
+};
+
+int demo_return_main(int argc, char *argv[])
+{
+  BaseBB *pB = new Derived();
+  //发生协变
+  BaseBB *p = pB->func();
+
+  p->GetA();
+
+  delete pB;
+  pB = NULL;
+  delete p;
+  p = NULL;
+//  system("pause");
+  getchar();
+  return 0;
+}
+
+
+
+#include <iostream>
+using namespace std;
+
+class IntArray
+{
+public:
+    IntArray() : size(0), ptr(nullptr) { cout << "default constructor!\n"; }
+    // 直接初始化的构造函数，用 explicit 屏蔽了其隐式转换的特性
+    explicit IntArray(unsigned s) : size(s)
+    {
+        cout << "direct constructor!\n";
+        ptr = new int[size]{1};
+    }
+//    IntArray(const IntArray &I) : size(I.size)
+//    {
+//        cout << "copy constructor!\n";
+//        ptr = new int[size];
+//        for (unsigned i = 0; i < size; ++i)
+//            ptr[i] = I.ptr[i];
+//    }
+//    IntArray(IntArray &&I) : size(I.size)
+//    {
+//        cout << "move constructor!\n";
+//        ptr = I.ptr;
+//        I.ptr = nullptr;
+//    }
+
+//    IntArray &operator=(const IntArray &I)
+//    {
+//        if (this == &I)
+//            return *this;
+//        cout << "copy assignment!\n";
+//        size = I.size;
+//        ptr = new int[size];
+//        for (unsigned i = 0; i < size; ++i)
+//            ptr[i] = I.ptr[i];
+//        return *this;
+//    }
+
+//    IntArray &operator=(IntArray &&I)
+//    {
+//        if (this == &I)
+//            return *this;
+//        cout << "move assignment!\n";
+//        size = I.size;
+//        ptr = I.ptr;
+//        I.ptr = nullptr;
+//        return *this;
+//    }
+
+    IntArray(const IntArray &I) = delete;
+
+    IntArray(IntArray &&I) = delete;
+
+    IntArray &operator=(const IntArray &I) = delete;
+
+    IntArray &operator=(IntArray &&I) = delete;
+
+    ~IntArray()
+    {
+        cout << "deconstructor!\n";
+        if (ptr)
+        {
+            delete[] ptr;
+            ptr = nullptr;
+        }
+    }
+
+private:
+    unsigned size;
+    int *ptr;
+};
+
+int demo_default_function()
+{
+    IntArray ia1;       // 调用默认构造函数
+    IntArray ia2(ia1);  // 直接初始化，调用拷贝构造函数
+    IntArray ia3 = ia1; // 拷贝初始化，调用拷贝构造函数
+    IntArray ia4 = static_cast<IntArray>(10); // 拷贝初始化，调用直接构造函数和移动构造函数，如果打开优化则只调用直接构造函数
+    cout << endl;
+    ia1 = ia2;						// 调用拷贝赋值函数
+    ia1 = static_cast<IntArray>(5);	// 调用直接构造函数和移动赋值函数
+    return 0;
+}
+
+
 int main(int argc, char *argv[])
 {
-  BaseB b(13);
-//  b.callFunc();
-//  b.setI();
-  b.print();
-//b.changePrivate();
+
+//  return demo_return_main(argc,argv);
+
+//  return demo_WordPrint(argc,argv);
+
+//  BaseB b(13);
+//  //  b.callFunc();
+//  //  b.setI();
+//  b.print();
+//  //b.changePrivate();
+
+
+demo_default_function();
 
   return 0;
 }

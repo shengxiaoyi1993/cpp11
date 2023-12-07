@@ -1,7 +1,9 @@
 ﻿#include <iostream>
 #include <demo_construction_deconstruction/demo_construction_deconstruction.h>
 
-/// 结论:类中的成员函数总是以声明顺序进行初始化;逆向顺序进行析构
+/// 结论:
+/// 类中的成员函数总是以声明顺序进行初始化;逆向顺序进行析构
+/// 类的拷贝构造函数与拷贝赋值的函数参数是
 
 
 int main(int argc, char const *argv[])

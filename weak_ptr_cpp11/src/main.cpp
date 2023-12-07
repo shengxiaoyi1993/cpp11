@@ -30,5 +30,9 @@ int main(int argc, char *argv[])
   //借助 lock() 函数，返回一个和 wp 同指向的 shared_ptr 类型指针，获取其存储的数据
   cout << *(wp.lock()) << endl;
 
+  sp1.reset();
+
+//  cout << *(wp.lock()) << endl;
+
   return 0;
 }

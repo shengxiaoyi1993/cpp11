@@ -1,9 +1,19 @@
 //#include <iostream>
 //#include <atomic>
+#include <type_traits>
+#include <iostream>
 
 
 /// atomic 不可复制和移动
 /// atomic<> 是standard layout struct  一个类是Standard Layout类，那么该类的对象在内存上的分配是连续的
+
+
+/// 为什么一个类同时定义了拷贝构造函数/拷贝赋值函数/移动构造函数/移动赋值函数,
+/// 使用is_move_constructible/is_move_assignable/is_copy_constructible/is_copy_assignable进行测试时
+/// is_copy_constructible/is_copy_assignable值为false
+
+/// 实例化要求
+/// 可复制构造 (CopyConstructible) 及可复制赋值 (CopyAssignable)
 
 //struct StA{
 //  int __a;
@@ -197,9 +207,9 @@ void append(int val)
 
     std::cout<<"in newNode->next:"<<newNode->next<<" oldHead:"<<oldHead<<std::endl;
 
-//    std::cout<<"oldHead:"<<oldHead<<std::endl;
+    //    std::cout<<"oldHead:"<<oldHead<<std::endl;
     newNode->next = oldHead;
-//    std::cout<<val<<std::endl;
+    //    std::cout<<val<<std::endl;
   }
   //  std::cout<<oldHead<<std::endl;
 
@@ -380,16 +390,204 @@ void test_for()
   }
   std::cout<<std::endl;
 
+  for (const auto &it:list) {
+    std::cout<<it<<" ";
+  }
+  std::cout<<std::endl;
+
 
 }
+
+
+
+#include<iostream>
+using namespace std;
+
+class A{
+public:
+  A(){
+    this->num = new int(10);
+    cout << "构造函数" << endl;
+  }
+  A(const A&x){
+    this->num = new int(*x.num);
+    cout << "拷贝构造函数" << endl;
+  }
+  A(A&&x){
+    this->num = x.num;
+    x.num = nullptr;
+    cout << "移动构造函数" << endl;
+  }
+
+  void operator = (A && x){
+    this->num = x.num;
+    x.num = nullptr;
+    cout << "移动赋值函数" << endl;
+  }
+  void operator = (const A & x){
+    this->num = new int(*x.num);
+    cout << "operator=" << endl;
+  }
+  ~A(){
+    cout << "析构函数" << endl;
+  }
+  int *num;
+};
+
+void test(){
+  A a;
+  ///使用拷贝构造函数
+  A b=a;
+  ///使用拷贝构造函数
+  A ba(a);
+  /// 使用移动够构造函数
+  A c(move(a));
+  A ca=move(b);
+
+
+  A f;
+
+  A d;
+  /// 拷贝赋值
+  d = f;
+  A e;
+  /// 移动赋值
+
+//  A g=(e = move(f));
+  /// 等式无返回值
+
+
+
+
+
+  std::cout << "int: "
+            << std::is_move_constructible<int>::value
+            << std::endl;
+
+  std::cout << "A is_move_constructible: "
+            << std::is_move_constructible<A>::value
+            << std::endl;
+
+  std::cout << "A is_copy_constructible: "
+            << std::is_copy_constructible<A>::value
+            << std::endl;
+
+  std::cout << "A is_copy_assignable: "
+            << std::is_copy_assignable<A>::value
+            << std::endl;
+  std::cout << "A is_move_assignable: "
+            << std::is_move_assignable<A>::value
+            << std::endl;
+
+//    std::cout << "A is_trivially_copyable: "
+//         << std::is_trivially_copyable<A>::value
+//         << std::endl;
+
+
+//      std::cout << "A is_trivially_copyable: "
+//           << std::is_trivially_copyable<int>::value
+//           << std::endl;
+
+}
+
+
+struct AA {
+    int m;
+};
+
+struct BB {
+    BB(const BB&) {}
+};
+
+struct CC {
+    virtual void foo();
+};
+
+
+
+void test_string_trait();
 
 
 int main(int argc, char *argv[])
 {
   //  atomic::test_atomic_atomic();
-//  atomic::test_atomic_compare_exchange_weak();
-//    atomic::test_atomic_load();
+  //  atomic::test_atomic_compare_exchange_weak();
+  //    atomic::test_atomic_load();
   //  atomic::test_atomic_flag_atomic_clear();
   test_for();
+
+
+  std::vector<int> list={1,4};
+  std::vector<int> list_0=list;
+  std::vector<int> list_1(list);
+
+  std::vector<int> list_2;
+  list_2=list;
+
+  //  std::atomic<std::vector<int>> atom_list;
+
+test();
+
+
+  std::cout << "int: "
+            << std::is_move_constructible<int>::value
+            << std::endl;
+
+  std::cout << "std::vector<int> is_move_constructible: "
+            << std::is_move_constructible<std::vector<int>>::value
+            << std::endl;
+
+  std::cout << "std::vector<int> is_copy_constructible: "
+            << std::is_copy_constructible<std::vector<int>>::value
+            << std::endl;
+
+  std::cout << "std::vector<int> is_copy_assignable: "
+            << std::is_copy_assignable<std::vector<int>>::value
+            << std::endl;
+  std::cout << "std::vector<int> is_move_assignable: "
+            << std::is_move_assignable<std::vector<int>>::value
+            << std::endl;
+
+
+//    std::cout << "std::vector<int> is_trivially_copyable: "
+//         << std::is_trivially_copyable<std::vector<int>>::value
+//         << std::endl;
+
+//  std::cout << std::boolalpha;
+//  std::cout << std::is_trivially_copyable<AA>::value << '\n';
+//  std::cout << std::is_trivially_copyable<BB>::value << '\n';
+//  std::cout << std::is_trivially_copyable<CC>::value << '\n';
+
+  test_string_trait();
+
   return 0;
+
 }
+
+
+
+void test_string_trait()
+{
+
+  std::cout << "std::string: "
+            << std::is_move_constructible<std::string>::value
+            << std::endl;
+
+  std::cout << "std::vector<std::string> is_move_constructible: "
+            << std::is_move_constructible<std::vector<std::string>>::value
+            << std::endl;
+
+  std::cout << "std::vector<std::string> is_copy_constructible: "
+            << std::is_copy_constructible<std::vector<std::string>>::value
+            << std::endl;
+
+  std::cout << "std::vector<std::string> is_copy_assignable: "
+            << std::is_copy_assignable<std::vector<std::string>>::value
+            << std::endl;
+  std::cout << "std::vector<std::string> is_move_assignable: "
+            << std::is_move_assignable<std::vector<std::string>>::value
+            << std::endl;
+
+}
+
+
